@@ -14,6 +14,7 @@ module bg.tuvarna.oop.dicestatistics {
     requires org.jfree.jfreechart;
     requires java.desktop;
     requires org.jfree.chart.fx;
+    requires commons.math3;
 
     opens bg.tuvarna.oop.dicestatistics;
     opens bg.tuvarna.oop.persistence.entities;

@@ -8,7 +8,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.fx.ChartViewer;
 import javafx.fxml.Initializable;
@@ -28,7 +33,7 @@ import static bg.tuvarna.oop.core.api.newgame.NewGame.*;
 //@NoArgsConstructor(access = AccessLevel.PUBLIC)
 //public class SimulationController implements Initializable {
 @Component
-public class SimulationController{
+public class SimulationController {
     @FXML
     private TextArea numberrolls;
 
@@ -63,6 +68,8 @@ public class SimulationController{
     @FXML
     private Label winnertxtbox;
 
+    @FXML
+    private BarChart chart;
 
     @FXML
     private AnchorPane chartPlace;
@@ -102,14 +109,13 @@ public class SimulationController{
         Long choosedPlayer1 = Long.valueOf(player1.getValue());
         Long choosedPlayer2 = Long.valueOf(player2.getValue());
 
-        if(numRolls > 200){
+        if (numRolls > 200) {
             winnertxtbox.setText("More than possible rolls");
             winnertxtbox.setVisible(true);
-        } else if(choosedPlayer1 == choosedPlayer2){
+        } else if (choosedPlayer1 == choosedPlayer2) {
             winnertxtbox.setText("Player 1 and Player 2 should be different");
             winnertxtbox.setVisible(true);
-        }
-        else{
+        } else {
             player1FirstName.setVisible(true);
             player2FirstName.setVisible(true);
             player1LastName.setVisible(true);
@@ -132,14 +138,9 @@ public class SimulationController{
             NewGameResponse response = newGame.process(input);
             winnertxtbox.setText("The winner is: " + response.getWinningPlayerId().toString());
             winnertxtbox.setVisible(true);
-            JFreeChart chartToDisplay = statiscticsReport.generateChart(getRollsForStatistics.getRollsForStatistics());
-            chartPlace.getChildren().add(new ChartViewer(chartToDisplay));
-//            ChartViewer chartViewer = new ChartViewer();
-//            chartViewer.setPrefWidth(560);
-//            chartViewer.setPrefHeight(260);
-//            chartViewer.setLayoutX(20);
-//            chartViewer.setLayoutY(260);
-//            chartViewer.setVisible(true);
+            chart = statiscticsReport.generateBarChart(getRollsForStatistics.getRollsForStatistics(), chart);
+
+
         }
     }
 }
