@@ -6,7 +6,7 @@ import java.util.Random;
 
 @RequiredArgsConstructor
 public class RandomNumberGenerator {
-    private static Random random;
+    private static Random random = new Random();
     private static int minPredictions = 2;
     private static int maxPredictions = 12;
     private static int minSingleDieRow = 1;

@@ -11,6 +11,9 @@ module bg.tuvarna.oop.dicestatistics {
     requires spring.core;
     requires org.hibernate.validator;
     requires org.hibernate.orm.core;
+    requires org.jfree.jfreechart;
+    requires java.desktop;
+    requires org.jfree.chart.fx;
 
     opens bg.tuvarna.oop.dicestatistics;
     opens bg.tuvarna.oop.persistence.entities;

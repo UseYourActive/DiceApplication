@@ -1,5 +1,6 @@
 package bg.tuvarna.oop.dicestatistics;
 
+import bg.tuvarna.oop.persistence.repositories.RollsRepository;
 import javafx.application.Application;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
