@@ -14,14 +14,14 @@
    <center>
       <AnchorPane prefHeight="552.0" prefWidth="599.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="startsimulation" layoutX="229.0" layoutY="130.0" mnemonicParsing="false" onAction="#startSim" text="Start simulation" />
+            <Button fx:id="startSimulation" layoutX="229.0" layoutY="130.0" mnemonicParsing="false" onAction="#startSim" text="Start simulation" />
             <ChoiceBox fx:id="player1" layoutX="43.0" layoutY="63.0" prefWidth="150.0" />
             <ChoiceBox fx:id="player2" layoutX="358.0" layoutY="63.0" prefWidth="150.0" />
-            <TextArea fx:id="numberrolls" layoutX="221.0" layoutY="56.0" prefHeight="39.0" prefWidth="115.0" />
+            <TextArea fx:id="numberRolls" layoutX="221.0" layoutY="56.0" prefHeight="39.0" prefWidth="115.0" />
             <Label layoutX="43.0" layoutY="39.0" text="Player 1" />
             <Label layoutX="358.0" layoutY="39.0" text="Player 2" />
             <Label layoutX="221.0" layoutY="39.0" text="Number rolls" />
-            <Label fx:id="winnertxtbox" layoutX="105.0" layoutY="221.0" prefHeight="18.0" prefWidth="348.0" text="The winner is:" />
+            <Label fx:id="winnerTextBox" layoutX="105.0" layoutY="221.0" prefHeight="18.0" prefWidth="348.0" text="The winner is:" />
             <Label fx:id="player1FirstName" layoutX="43.0" layoutY="121.0" prefHeight="18.0" prefWidth="154.0" text="First name:" />
             <Label fx:id="player1LastName" layoutX="43.0" layoutY="146.0" prefHeight="18.0" prefWidth="154.0" text="Last name:" />
             <Label fx:id="player1EGN" layoutX="43.0" layoutY="172.0" prefHeight="18.0" prefWidth="154.0" text="EGN:" />

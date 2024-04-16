@@ -12,11 +12,11 @@ public class RandomNumberGenerator {
     private static int minSingleDieRow = 1;
     private static int maxSingleDieRow = 6;
 
-    public static int generatePredication(){
-       return random.nextInt(maxPredictions - minPredictions + 1) + minPredictions;
+    public static int generatePredication() {
+        return random.nextInt(maxPredictions - minPredictions + 1) + minPredictions;
     }
 
-    public static int generateSingleDieRow(){
+    public static int generateSingleDieRow() {
         return random.nextInt(maxSingleDieRow - minSingleDieRow + 1) + minSingleDieRow;
     }
 }

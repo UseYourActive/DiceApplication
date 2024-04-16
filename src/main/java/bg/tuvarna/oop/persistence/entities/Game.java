@@ -14,9 +14,11 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @ManyToOne
     private Player player1;
     private int player1WinnedRows;
+
     @ManyToOne
     private Player player2;
     private int player2WinnedRows;

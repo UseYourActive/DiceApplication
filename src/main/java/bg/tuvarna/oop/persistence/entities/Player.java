@@ -15,10 +15,13 @@ public class Player {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
+
     @Length(max=60, message = "Fist name should be max 60 characters")
     private String lastName;
+
     @Length(max=60, message = "Fist name should be max 60 characters")
     private String firstName;
+
     @Length(max=10, message = "EGN should be max 10 characters")
     private String egn;
 }

@@ -3,30 +3,19 @@ package bg.tuvarna.oop.controller;
 import bg.tuvarna.oop.core.api.newgame.NewGame;
 import bg.tuvarna.oop.core.helper.GetAllPlayers;
 import bg.tuvarna.oop.core.helper.GetRollsForStatistics;
-import bg.tuvarna.oop.core.helper.StatiscticsReport;
+import bg.tuvarna.oop.core.helper.StatisticsReport;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.fx.ChartViewer;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import static bg.tuvarna.oop.core.api.newgame.NewGame.*;
 
@@ -35,7 +24,7 @@ import static bg.tuvarna.oop.core.api.newgame.NewGame.*;
 @Component
 public class SimulationController {
     @FXML
-    private TextArea numberrolls;
+    private TextArea numberRolls;
 
     @FXML
     private ChoiceBox<String> player1;
@@ -44,7 +33,7 @@ public class SimulationController {
     private ChoiceBox<String> player2;
 
     @FXML
-    private Button startsimulation;
+    private Button startSimulation;
 
     @FXML
     private Label player2EGN;
@@ -64,9 +53,8 @@ public class SimulationController {
     @FXML
     private Label player1LastName;
 
-
     @FXML
-    private Label winnertxtbox;
+    private Label winnerTextBox;
 
     @FXML
     private BarChart chart;
@@ -81,14 +69,14 @@ public class SimulationController {
     private GetRollsForStatistics getRollsForStatistics;
 
     @Autowired
-    private StatiscticsReport statiscticsReport;
+    private StatisticsReport statisticsReport;
 
     @Autowired
     private NewGame newGame;
 
     @FXML
     public void initialize() {
-        winnertxtbox.setVisible(false);
+        winnerTextBox.setVisible(false);
         player1FirstName.setVisible(false);
         player2FirstName.setVisible(false);
         player1LastName.setVisible(false);
@@ -105,16 +93,16 @@ public class SimulationController {
 
     @FXML
     void startSim(ActionEvent event) throws IOException {
-        int numRolls = Integer.valueOf(numberrolls.getText());
-        Long choosedPlayer1 = Long.valueOf(player1.getValue());
-        Long choosedPlayer2 = Long.valueOf(player2.getValue());
+        int numRolls = Integer.parseInt(numberRolls.getText());
+        long chosenPlayer1 = Long.parseLong(player1.getValue());
+        long chosenPlayer2 = Long.parseLong(player2.getValue());
 
         if (numRolls > 200) {
-            winnertxtbox.setText("More than possible rolls");
-            winnertxtbox.setVisible(true);
-        } else if (choosedPlayer1 == choosedPlayer2) {
-            winnertxtbox.setText("Player 1 and Player 2 should be different");
-            winnertxtbox.setVisible(true);
+            winnerTextBox.setText("More than possible rolls");
+            winnerTextBox.setVisible(true);
+        } else if (chosenPlayer1 == chosenPlayer2) {
+            winnerTextBox.setText("Player 1 and Player 2 should be different");
+            winnerTextBox.setVisible(true);
         } else {
             player1FirstName.setVisible(true);
             player2FirstName.setVisible(true);
@@ -122,8 +110,8 @@ public class SimulationController {
             player2LastName.setVisible(true);
             player1EGN.setVisible(true);
             player2EGN.setVisible(true);
-            Map<String, String> player1info = getAllPlayers.getPlayerInfo(choosedPlayer1);
-            Map<String, String> player2info = getAllPlayers.getPlayerInfo(choosedPlayer2);
+            Map<String, String> player1info = getAllPlayers.getPlayerInfo(chosenPlayer1);
+            Map<String, String> player2info = getAllPlayers.getPlayerInfo(chosenPlayer2);
             player1FirstName.setText("First name: " + player1info.get("firstName"));
             player2FirstName.setText("First name: " + player2info.get("firstName"));
             player1LastName.setText("Last name: " + player1info.get("lastName"));
@@ -132,14 +120,14 @@ public class SimulationController {
             player2EGN.setText("EGN: " + player2info.get("egn"));
             NewGameInput input = NewGameInput.builder()
                     .maxDiesRows(numRolls)
-                    .player1Id(choosedPlayer1)
-                    .player2Id(choosedPlayer2)
+                    .player1Id(chosenPlayer1)
+                    .player2Id(chosenPlayer2)
                     .build();
             NewGameResponse response = newGame.process(input);
-            winnertxtbox.setText("The winner is: " + response.getWinningPlayerId().toString());
-            winnertxtbox.setVisible(true);
-            chart = statiscticsReport.generateBarChart(getRollsForStatistics.getRollsForStatistics(), chart);
-
+            winnerTextBox.setText("The winner is: " + response.getWinningPlayerId().toString());
+            winnerTextBox.setVisible(true);
+            chart = statisticsReport.generateBarChart(getRollsForStatistics.getRollsForStatistics(), chart);
+            statisticsReport.addTrendLine(chart, getRollsForStatistics.getRollsForStatistics());
 
         }
     }

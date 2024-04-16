@@ -14,11 +14,11 @@ import java.util.Map;
 public class GetAllPlayers {
     private final PlayerRepository playerRepository;
 
-    public List<String> getPlayers(){
+    public List<String> getPlayers() {
         return this.playerRepository.findAll().stream().map(player -> player.getId().toString()).toList();
     }
 
-    public Map<String, String> getPlayerInfo(Long playerId){
+    public Map<String, String> getPlayerInfo(Long playerId) {
         Player player = playerRepository.findById(playerId).orElseThrow();
         Map<String, String> playerInfo = new HashMap<>();
         playerInfo.put("firstName", player.getFirstName());

@@ -29,7 +29,7 @@ public class GetRollsForStatistics {
         allRollsCount.put(11, 0);
         allRollsCount.put(12, 0);
         var gameIds = gameRepository.findAll();
-        gameIds.forEach(gameId ->{
+        gameIds.forEach(gameId -> {
             var rolls = rollsRepository.findRollsByGameId(gameId).orElseThrow();
             allRollsCount.put(2, allRollsCount.get(2) + rolls.getNumber2());
             allRollsCount.put(3, allRollsCount.get(3) + rolls.getNumber3());
@@ -43,6 +43,6 @@ public class GetRollsForStatistics {
             allRollsCount.put(11, allRollsCount.get(11) + rolls.getNumber11());
             allRollsCount.put(12, allRollsCount.get(12) + rolls.getNumber12());
         });
-     return allRollsCount;
+        return allRollsCount;
     }
 }

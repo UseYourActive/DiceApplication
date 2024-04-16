@@ -41,17 +41,17 @@ public class NewGameImplementation implements NewGame {
             int diesRows = RandomNumberGenerator.generateSingleDieRow() + RandomNumberGenerator.generateSingleDieRow();
             markRowedValue(diesRows, rolls);
             rollsRepository.save(rolls);
-            if (predictionPlayer1 == diesRows){
-                game.setPlayer1WinnedRows(game.getPlayer1WinnedRows()+1);
-            }else if( predictionPlayer2 == diesRows){
-                game.setPlayer2WinnedRows(game.getPlayer2WinnedRows()+1);
+            if (predictionPlayer1 == diesRows) {
+                game.setPlayer1WinnedRows(game.getPlayer1WinnedRows() + 1);
+            } else if (predictionPlayer2 == diesRows) {
+                game.setPlayer2WinnedRows(game.getPlayer2WinnedRows() + 1);
             }
         }
 
         NewGameResponse response = NewGameResponse.builder().build();
-        if(game.getPlayer1WinnedRows() > game.getPlayer2WinnedRows()){
+        if (game.getPlayer1WinnedRows() > game.getPlayer2WinnedRows()) {
             response.setWinningPlayerId(player1.getId());
-        }else{
+        } else {
             response.setWinningPlayerId(player2.getId());
         }
         return response;
