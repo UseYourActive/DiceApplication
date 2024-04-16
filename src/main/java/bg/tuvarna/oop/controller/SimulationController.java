@@ -127,7 +127,7 @@ public class SimulationController {
             winnerTextBox.setText("The winner is: " + response.getWinningPlayerId().toString());
             winnerTextBox.setVisible(true);
             chart = statisticsReport.generateBarChart(getRollsForStatistics.getRollsForStatistics(), chart);
-            statisticsReport.addTrendLine(chart, getRollsForStatistics.getRollsForStatistics());
+            //statisticsReport.addTrendLine(chart, getRollsForStatistics.getRollsForStatistics());
 
         }
     }
